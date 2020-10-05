@@ -7,11 +7,7 @@
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: center;
-}
-
-.logon-container section img {
-    max-width: 100px;
+    justify-content: space-between;
 }
 
 .logon-container section.form {
@@ -29,23 +25,8 @@
     margin-top: 32px;
 }
 
-.logon-container section.form form a {
-    display: flex;
-    align-items: center;
-    margin-top: 40px;
-    color: #41414d;
-    font-size: 18px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: opacity 0.2s;
-}
-
-.logon-container section.form form a svg{
-    margin-right: 8px;
-}
-
-.logon-container section.form form a:hover {
-    opacity: 0.8;
+.logon-container section.form form h1 {
+    margin-bottom: 10px;
 }
 
 .fundoImg {
