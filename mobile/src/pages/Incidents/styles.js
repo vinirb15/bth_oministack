@@ -6,7 +6,7 @@ export default StyleSheet.create({
         flex: 1,
         paddingHorizontal: 24,
         paddingTop: Constants.statusBarHeight + 20,
-        backgroundColor: '#444',
+        backgroundColor: '#FFF',
     },
 
     header: {
@@ -15,10 +15,10 @@ export default StyleSheet.create({
         alignItems: 'center'
     },
 
-    // logoImg: {
-    //     height: 100,
-    //     width: 100,
-    // },
+    logoImg: {
+        height: 100,
+        width: 100,
+    },
 
     headerText: {
         fontSize: 15,
@@ -32,7 +32,7 @@ export default StyleSheet.create({
     title: {
         fontSize: 30,
         marginBottom: 16,
-        marginTop: 48,
+        marginTop: 20,
         color: '#13131a',
         fontWeight: 'bold'
     },
@@ -55,6 +55,12 @@ export default StyleSheet.create({
     },
 
     incidentProperty: {
+        fontSize: 14,
+        color: '#41414d',
+        fontWeight: 'bold'
+    },
+
+    incidentCase: {
         fontSize: 14,
         color: '#41414d',
         fontWeight: 'bold'
