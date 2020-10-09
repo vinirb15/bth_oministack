@@ -5,22 +5,24 @@ import { View, Image, Text, TouchableOpacity, FlatList } from 'react-native' //s
 
 import api from '../../../services/api'
 
-import logoImg from '../../assets/user.png'
-
 import styles from './styles'
 
 export default function Incidents() {
     const [incidents, setIncidents] = useState([])
+
+    const [total, setTotal] = useState(0)
+
     const navigation = useNavigation();
 
-    function navigateToDetail() {
-        navigation.navigate('Detail');
+    function navigateToDetail(incident) {
+        navigation.navigate('Detail', { incident });
     }
 
     async function loadIncidents() {
         const response = await api.get('/incidents')
 
         setIncidents(response.data)
+        setTotal(response.headers['x-total_count'])
     }
 
     useEffect(() => {
@@ -30,9 +32,9 @@ export default function Incidents() {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Image source={styles.logoImg} />
+                <Image source={require('../../assets/gray-wolf.png')} style={styles.logoImg} />
                 <Text style={styles.headerText}>
-                    Total de <Text style={styles.headerTextBold}>0 casos</Text>.
+                    Total de <Text style={styles.headerTextBold}>{total} casos</Text>.
                 </Text>
             </View>
 
@@ -53,10 +55,12 @@ export default function Incidents() {
                         <Text style={styles.incidentValue}>{incident.title}</Text>
 
                         <Text style={styles.incidentProperty}>VALOR:</Text>
-                        <Text style={styles.incidentValue}>{incident.value}</Text>
+                        <Text style={styles.incidentValue}>
+                            {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(incident.value)}
+                        </Text>
 
                         <TouchableOpacity style={styles.detailsButton}
-                            onPress={navigateToDetail}>
+                            onPress={() => navigateToDetail(incident)}>
 
                             <Text style={styles.detailsButtonText}>Ver mais detalhes</Text>
                             <Feather name="arrow-right" size={16} color="#E02041" />
