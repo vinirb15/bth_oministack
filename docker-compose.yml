@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+  back:
+    build: ./backend
+    volumes:
+      - ./backend:/usr/src/omnistack/
+      - /usr/src/omnistack/node_modules
+    ports:
+      - 3333:3333
+    command: npm start
+  front:
+    build: ./frontend
+    depends_on:
+      - back
+    volumes:
+      - ./frontend:/usr/src/omnistack/
+      - /usr/src/omnistack/node_modules
+    ports:
+      - 3000:3000
+    environment:
+      - CI=true
+      - HOST=0.0.0.0
+    command: npm start
+  mobile:
+    build: ./mobile
+    depends_on:
+      - back
+    volumes:
+      - ./mobile:/usr/src/omnistack/
+      - /usr/src/omnistack/node_modules
+    ports:
+      - 19000:19000
+      - 19001:19001
+    environment:
+      - HOST=0.0.0.0
+      - REACT_NATIVE_PACKAGER_HOSTNAME=$HOST_IP
+    command: npm start
